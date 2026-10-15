@@ -156,18 +156,18 @@ export const PROFILES = [
     alt: 'Estudiantes toman apuntes y trabajan con portátiles junto a una pizarra de investigación',
   },
   {
-    slug: 'ingenieros', short: 'Ingenieros', n: '03', area: 'Ingenieros', icon: 'ph-wrench',
-    title: 'Para horas de taller, diseño y resolución de problemas en las que cada detalle cuenta',
-    text: 'Para horas de taller, diseño y resolución de problemas en las que cada detalle cuenta.',
-    img: 'assets/perfil-ingenieros-cuadrada.webp', w: 900, h: 900, card: 'assets/perfil-ingenieros',
-    alt: 'Tres ingenieros montan un circuito en un taller',
-  },
-  {
-    slug: 'atletas', short: 'Atletas', n: '04', area: 'Atletas y deportistas', icon: 'ph-person-simple-run',
+    slug: 'atletas', short: 'Atletas', n: '03', area: 'Atletas y deportistas', icon: 'ph-person-simple-run',
     title: 'Para quien entrena con disciplina y cuida la preparación, el esfuerzo y el descanso',
     text: 'Para quien entrena con disciplina y cuida cada fase: la preparación, el esfuerzo y el descanso.',
     img: 'assets/perfil-atletas-cuadrada.webp', w: 900, h: 900, card: 'assets/perfil-atletas',
     alt: 'Una atleta sale de los tacos en una pista de atletismo al atardecer',
+  },
+  {
+    slug: 'ingenieros', short: 'Ingenieros', n: '04', area: 'Ingenieros', icon: 'ph-wrench',
+    title: 'Para horas de taller, diseño y resolución de problemas en las que cada detalle cuenta',
+    text: 'Para horas de taller, diseño y resolución de problemas en las que cada detalle cuenta.',
+    img: 'assets/perfil-ingenieros-cuadrada.webp', w: 900, h: 900, card: 'assets/perfil-ingenieros',
+    alt: 'Tres ingenieros montan un circuito en un taller',
   },
   {
     slug: 'gamers-y-disenadores', short: 'Gamers y diseñadores', n: '05', area: 'Gamers y diseñadores', icon: 'ph-game-controller',
