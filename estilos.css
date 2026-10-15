@@ -603,17 +603,23 @@ span.more { color: var(--link); }
    ================================================================================================= */
 .hl { position: relative; }
 .hl__track {
-  display: flex; gap: var(--gap);
+  --card-w: min(980px, 84vw); --track-gap: var(--gap);
+  display: flex; gap: var(--track-gap);
   overflow-x: auto; scroll-snap-type: x mandatory; scroll-behavior: smooth;
   padding-inline: max(22px, calc((100% - 1260px) / 2));
   scroll-padding-inline: max(22px, calc((100% - 1260px) / 2));
   scrollbar-width: none;
   padding-bottom: 4px;
 }
-.hl__track::-webkit-scrollbar { display: none; }
+.hl__track::-webkit-scrollbar, .pc__track::-webkit-scrollbar { display: none; }
+/* Hueco al final de la pista: así la última tarjeta (y la penúltima) pueden alinearse a la
+   izquierda como las demás; sin él, al ir a la 4.ª el navegador saltaba directamente al final. */
+.hl__track::after, .pc__track::after {
+  content: ""; flex: 0 0 max(0px, calc(100% - var(--card-w) - var(--track-gap)));
+}
 .hl__card {
   position: relative; flex: 0 0 auto;
-  width: min(980px, 84vw); height: clamp(460px, 48vw, 640px);
+  width: var(--card-w); height: clamp(460px, 48vw, 640px);
   border-radius: var(--r-card); overflow: hidden;
   background: var(--white);
   scroll-snap-align: start;
@@ -662,9 +668,59 @@ span.more { color: var(--link); }
 .hl__dots button[aria-current="true"] { width: 44px; background: rgba(0, 0, 0, 0.8); }
 .no-js .hl__controls { display: none; }
 
+/* =================================================================================================
+   08 · A QUIÉN VA DIRIGIDO (como «Set to stunning.»): tarjetas de foto grandes y la frase debajo
+   ================================================================================================= */
+.pc__track {
+  --card-w: min(686px, 72vw); --track-gap: var(--gap);
+  display: flex; gap: var(--track-gap);
+  overflow-x: auto; scroll-snap-type: x mandatory; scroll-behavior: smooth;
+  padding-inline: max(22px, calc((100% - 1260px) / 2));
+  scroll-padding-inline: max(22px, calc((100% - 1260px) / 2));
+  scrollbar-width: none;
+}
+.pc__card { position: relative; flex: 0 0 var(--card-w); scroll-snap-align: start; }
+.pc__media {
+  display: block; aspect-ratio: 686 / 446; border-radius: var(--r-card); overflow: hidden; background: var(--mist);
+}
+.pc__media img, .pc__media video { width: 100%; height: 100%; object-fit: cover; transition: scale 0.8s var(--ease); }
+.pc__card:hover .pc__media img, .pc__card:hover .pc__media video { scale: 1.03; }
+.pc__text {
+  max-width: 490px; padding: 26px 16px 0;
+  font-size: 17px; line-height: 1.24; letter-spacing: -0.022em; color: var(--slate);
+}
+.pc__text b { color: var(--ink); font-weight: 600; }
+.pc__text .more { font-size: 17px; margin-left: 4px; white-space: nowrap; }
+.pc__play {
+  position: absolute; right: 18px; top: calc(var(--card-w) * 446 / 686 - 54px);
+  width: 36px; height: 36px; border-radius: 50%; display: grid; place-items: center;
+  background: rgba(210, 210, 215, 0.64); color: rgba(0, 0, 0, 0.7); font-size: 15px;
+  -webkit-backdrop-filter: blur(14px); backdrop-filter: blur(14px);
+}
+.pc__play:hover { background: rgba(232, 232, 237, 0.9); color: var(--ink); }
+.pc__nav { display: flex; align-items: center; justify-content: space-between; gap: 20px; margin-top: 36px; }
+.pc__arrows { display: flex; gap: 18px; margin-left: auto; }
+.pc__arrow {
+  width: 36px; height: 36px; border-radius: 50%; display: grid; place-items: center;
+  background: rgba(210, 210, 215, 0.64); color: rgba(0, 0, 0, 0.56); font-size: 16px;
+  transition: background-color 0.2s var(--ease), color 0.2s var(--ease), opacity 0.2s var(--ease);
+}
+.pc__arrow:hover:not(:disabled) { background: rgba(223, 223, 227, 0.9); color: var(--ink); }
+.pc__arrow:disabled { opacity: 0.42; cursor: default; }
+.no-js .pc__arrows { display: none; }
+
 @media (max-width: 734px) {
-  .hl__track { padding-inline: 20px; scroll-padding-inline: 20px; gap: 12px; }
-  .hl__card { width: 86vw; height: 520px; border-radius: 22px; }
+  .pc__track { --card-w: 84vw; --track-gap: 12px; padding-inline: 20px; scroll-padding-inline: 20px; }
+  .pc__media { aspect-ratio: 4 / 3.4; border-radius: 22px; }
+  .pc__play { top: calc(var(--card-w) * 3.4 / 4 - 50px); right: 14px; }
+  .pc__text { padding: 18px 8px 0; }
+  .pc__nav { flex-direction: column-reverse; align-items: stretch; gap: 24px; margin-top: 24px; }
+  .pc__arrows { margin-left: 0; justify-content: flex-end; }
+}
+
+@media (max-width: 734px) {
+  .hl__track { --card-w: 86vw; --track-gap: 12px; padding-inline: 20px; scroll-padding-inline: 20px; }
+  .hl__card { height: 520px; border-radius: 22px; }
   .hl__card > img { object-position: 50% 100%; height: 72%; top: auto; bottom: 0; }
   .hl__text { padding: 32px 24px 0; font-size: 21px; }
   .hl__lineup img { width: 22%; }

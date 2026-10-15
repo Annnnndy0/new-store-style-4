@@ -646,3 +646,6 @@
   .table th, .table td { padding-right: 12px; }
   .table--countries th:nth-child(3), .table--countries td:nth-child(3) { white-space: nowrap; }
 }
+
+/* Vídeo en la cabecera del perfil de artistas */
+.pmedia video { width: 100%; height: 100%; object-fit: cover; display: block; }

@@ -282,48 +282,78 @@
   targets.forEach((t) => spy.observe(t));
 
   // ---------------------------------------------------------------------------------------------
-  // Carrusel "Compra con tranquilidad": se desliza con el dedo (scroll-snap) o con la píldora
+  // Carruseles ("Compra con tranquilidad" y "A quién va dirigido"): se deslizan con el dedo
+  // (scroll-snap) o con las flechas. La tarjeta actual es la más cercana al borde izquierdo de la
+  // pista; el hueco del final (CSS) deja que cada tarjeta, también la 4.ª, pueda quedar a la izquierda.
   // ---------------------------------------------------------------------------------------------
-  const hl = $('[data-hl]');
-  if (hl) {
-    const track = $('[data-hl-track]', hl);
-    const cards = $$('.hl__card', track);
-    const dotsBox = $('[data-hl-dots]', hl);
-    const prev = $('[data-hl-prev]', hl);
-    const next = $('[data-hl-next]', hl);
-    const dots = cards.map((c, i) => {
+  function carousel({ track, cards, prev, next, dotsBox }) {
+    const dots = dotsBox ? cards.map((c, i) => {
       const b = document.createElement('button');
       b.type = 'button';
       b.setAttribute('aria-label', `Ir a la diapositiva ${i + 1}`);
       b.addEventListener('click', () => go(i));
       dotsBox.append(b);
       return b;
-    });
+    }) : [];
     let current = 0;
+    // El relleno izquierdo de la pista (en px; scroll-padding puede venir como max(...))
+    const pad = () => parseFloat(getComputedStyle(track).paddingLeft) || 0;
     const go = (i) => {
       i = Math.max(0, Math.min(cards.length - 1, i));
-      const pad = parseFloat(getComputedStyle(track).scrollPaddingLeft) || 0;
-      track.scrollTo({ left: cards[i].offsetLeft - pad, behavior: reduce.matches ? 'auto' : 'smooth' });
+      current = i;
+      track.scrollTo({ left: cards[i].offsetLeft - pad(), behavior: reduce.matches ? 'auto' : 'smooth' });
+      paint();
+    };
+    const paint = () => {
+      dots.forEach((d, i) => d.setAttribute('aria-current', String(i === current)));
+      if (prev) prev.disabled = current === 0;
+      if (next) next.disabled = current === cards.length - 1;
     };
     const sync = () => {
-      const pad = parseFloat(getComputedStyle(track).scrollPaddingLeft) || 0;
-      const x = track.scrollLeft + pad;
+      const x = track.scrollLeft + pad();
       let best = 0;
       cards.forEach((c, i) => { if (Math.abs(c.offsetLeft - x) < Math.abs(cards[best].offsetLeft - x)) best = i; });
-      // Al final del recorrido, el último
-      if (track.scrollLeft + track.clientWidth >= track.scrollWidth - 4) best = cards.length - 1;
       current = best;
-      dots.forEach((d, i) => d.setAttribute('aria-current', String(i === best)));
-      prev.disabled = best === 0;
-      next.disabled = best === cards.length - 1;
+      paint();
     };
-    prev.addEventListener('click', () => go(current - 1));
-    next.addEventListener('click', () => go(current + 1));
+    prev?.addEventListener('click', () => go(current - 1));
+    next?.addEventListener('click', () => go(current + 1));
     let raf = 0;
     track.addEventListener('scroll', () => { cancelAnimationFrame(raf); raf = requestAnimationFrame(sync); }, { passive: true });
     window.addEventListener('resize', sync);
     sync();
   }
+
+  const hl = $('[data-hl]');
+  if (hl) {
+    const track = $('[data-hl-track]', hl);
+    carousel({ track, cards: $$('.hl__card', track), prev: $('[data-hl-prev]', hl), next: $('[data-hl-next]', hl), dotsBox: $('[data-hl-dots]', hl) });
+  }
+  $$('[data-carousel]').forEach((root) => {
+    const track = $('[data-carousel-track]', root);
+    carousel({ track, cards: [...track.children], prev: $('[data-carousel-prev]', root), next: $('[data-carousel-next]', root) });
+  });
+
+  // Vídeos de las tarjetas: se reproducen solo mientras están en pantalla (nunca con "reducir
+  // movimiento") y se pueden pausar con su botón.
+  $$('video[data-autoplay]').forEach((video) => {
+    const btn = video.closest('li, figure')?.querySelector('[data-video-toggle]');
+    let paused = reduce.matches;
+    const setBtn = () => {
+      if (!btn) return;
+      btn.setAttribute('aria-pressed', String(paused));
+      btn.setAttribute('aria-label', paused ? 'Reproducir el vídeo' : 'Pausar el vídeo');
+      btn.querySelector('i').className = `ph ${paused ? 'ph-play' : 'ph-pause'}`;
+    };
+    let visible = false;
+    const update = () => { if (visible && !paused) video.play().catch(() => {}); else video.pause(); };
+    if (reduce.matches) video.removeAttribute('autoplay');
+    if ('IntersectionObserver' in window) {
+      new IntersectionObserver(([en]) => { visible = en.isIntersecting; update(); }, { threshold: 0.35 }).observe(video);
+    } else { visible = true; update(); }
+    btn?.addEventListener('click', () => { paused = !paused; setBtn(); update(); });
+    setBtn();
+  });
 
   // ---------------------------------------------------------------------------------------------
   // Comparador en móvil: dos columnas a la vez, elegidas con los selectores

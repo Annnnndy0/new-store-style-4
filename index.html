@@ -166,7 +166,7 @@
               </div>
               <div class="fly__col">
                 <p class="fly__h">¿Para quién?</p>
-                <ul class="fly__small"><li><a href="perfiles/neuro-regulacion/">Neuro-regulación</a></li><li><a href="perfiles/cronobiologia-y-sueno/">Cronobiología y sueño</a></li><li><a href="perfiles/modulacion-inflamatoria/">Modulación inflamatoria</a></li><li><a href="#perfiles">Los 6 perfiles</a></li></ul>
+                <ul class="fly__small"><li><a href="perfiles/artistas/">Artistas</a></li><li><a href="perfiles/estudiantes-e-ingenieros/">Estudiantes e ingenieros</a></li><li><a href="perfiles/atletas/">Atletas y deportistas</a></li><li><a href="#perfiles">Los 6 perfiles</a></li></ul>
               </div>
               <div class="fly__col">
                 <p class="fly__h">Evidencia</p>
@@ -847,41 +847,73 @@
     </section>
 
     <!-- ==========================================================================================
-         08 · A QUIÉN VA DIRIGIDO: 6 perfiles como iconos grandes (imagen en su recuadro gris, nombre y
-         "Ver perfil"). Los perfiles 4–6 y lo subrayado (.draft) son de muestra.
+         08 · A QUIÉN VA DIRIGIDO (como «Set to stunning.» de la página del iPhone Duo): carrusel de
+         tarjetas grandes con la foto (o el vídeo, solo en Artistas) y debajo su frase; se desliza con
+         el dedo o con las flechas de abajo a la derecha. El vídeo solo se reproduce cuando está en
+         pantalla (y nunca con «reducir movimiento»). Cada tarjeta lleva a su página de perfil.
+         IMAGEN · perfil-*: assets/perfil-*.webp; VÍDEO · perfil-artistas.webm / .mp4.
+         Las frases son texto de muestra a revisar.
          ========================================================================================== -->
-    <section class="sec" id="perfiles" aria-labelledby="perfiles-title">
-      <div class="wrap">
-        <header class="sec__head sec__head--center reveal">
-          <p class="kicker">Para quién</p>
-          <h2 class="sec__title" id="perfiles-title">A quién va dirigido.</h2>
-          <p class="sec__lede"><span class="draft">Aquí una línea sobre los perfiles a los que se dirigen los productos, según su ficha oficial.</span></p>
+    <section class="sec sec--flush" id="perfiles" aria-labelledby="perfiles-title">
+      <div class="wrap wrap--wide">
+        <header class="sec__head sec__head--split reveal">
+          <div class="sec__headtext">
+            <p class="kicker">Para quién</p>
+            <h2 class="sec__title" id="perfiles-title">A quién va dirigido.</h2>
+          </div>
+          <a class="more" href="#elegir">Descubrir mi fórmula adecuada</a>
         </header>
+      </div>
 
-        <ul class="profiles">
-          <li class="reveal"><a class="profile" href="perfiles/neuro-regulacion/">
-            <span class="profile__pic"><img src="assets/aud-focus.webp" width="800" height="800" alt="Busto de escultura blanca con un anillo de luz alrededor de la frente" loading="lazy" decoding="async"></span>
-            <span class="profile__name">Neuro-regulación</span><span class="more">Ver perfil</span></a></li>
-          <li class="reveal"><a class="profile" href="perfiles/cronobiologia-y-sueno/">
-            <span class="profile__pic"><img src="assets/aud-sleep.webp" width="800" height="800" alt="Figura blanca flotando en postura de descanso" loading="lazy" decoding="async"></span>
-            <span class="profile__name">Sueño</span><span class="more">Ver perfil</span></a></li>
-          <li class="reveal"><a class="profile" href="perfiles/modulacion-inflamatoria/">
-            <span class="profile__pic"><img src="assets/aud-helix.webp" width="800" height="800" alt="Escultura blanca de una doble hélice con nervaduras de hoja" loading="lazy" decoding="async"></span>
-            <span class="profile__name">Inflamación</span><span class="more">Ver perfil</span></a></li>
-          <li class="reveal"><a class="profile" href="perfiles/perfil-4/">
-            <span class="profile__pic"><img src="assets/read-shield.webp" width="1200" height="900" alt="Un cerebro blanco protegido dentro de un escudo de púas" loading="lazy" decoding="async"></span>
-            <span class="profile__name"><span class="draft">Perfil 4</span></span><span class="more">Ver perfil</span></a></li>
-          <li class="reveal"><a class="profile" href="perfiles/perfil-5/">
-            <span class="profile__pic"><img src="assets/read-focus.webp" width="1200" height="900" alt="Un cerebro blanco en movimiento que deja una estela" loading="lazy" decoding="async"></span>
-            <span class="profile__name"><span class="draft">Perfil 5</span></span><span class="more">Ver perfil</span></a></li>
-          <li class="reveal"><a class="profile" href="perfiles/perfil-6/">
-            <span class="profile__pic"><img src="assets/aud-psique.webp" width="800" height="800" alt="Escultura de un cerebro de porcelana blanca" loading="lazy" decoding="async"></span>
-            <span class="profile__name"><span class="draft">Perfil 6</span></span><span class="more">Ver perfil</span></a></li>
+      <div class="pc" data-carousel>
+        <ul class="pc__track" data-carousel-track aria-label="Perfiles">
+          <li class="pc__card" aria-roledescription="diapositiva" aria-label="1 de 6: Artistas">
+            <a class="pc__media" href="perfiles/artistas/" tabindex="-1" aria-hidden="true">
+              <video class="pc__video" muted loop playsinline preload="none" poster="assets/perfil-artistas-760.webp" aria-label="Una artista pinta un lienzo al aire libre, entre espigas doradas" data-autoplay>
+                <source src="assets/perfil-artistas.webm" type="video/webm">
+                <source src="assets/perfil-artistas.mp4" type="video/mp4">
+              </video>
+            </a>
+            <button class="pc__play" type="button" aria-label="Pausar el vídeo" aria-pressed="false" data-video-toggle><i class="ph ph-pause" aria-hidden="true"></i></button>
+            <p class="pc__text"><b>Artistas.</b> Para quien pasa horas creando y quiere mantener la atención en cada trazo. <a class="more" href="perfiles/artistas/">Ver perfil<span class="sr-only">: Artistas</span></a></p>
+          </li>
+          <li class="pc__card" aria-roledescription="diapositiva" aria-label="2 de 6: Estudiantes, académicos e ingenieros">
+            <a class="pc__media" href="perfiles/estudiantes-e-ingenieros/" tabindex="-1" aria-hidden="true">
+              <img src="assets/perfil-ingenieros-760.webp" srcset="assets/perfil-ingenieros-760.webp 760w, assets/perfil-ingenieros.webp 1400w" sizes="(max-width: 734px) 84vw, 686px" width="1400" height="781" alt="Tres estudiantes de ingeniería montan un circuito en un taller" loading="lazy" decoding="async">
+            </a>
+            <p class="pc__text"><b>Estudiantes, académicos e ingenieros.</b> Para jornadas largas de estudio, investigación o taller en las que cada detalle cuenta. <a class="more" href="perfiles/estudiantes-e-ingenieros/">Ver perfil<span class="sr-only">: Estudiantes, académicos e ingenieros</span></a></p>
+          </li>
+          <li class="pc__card" aria-roledescription="diapositiva" aria-label="3 de 6: Atletas y deportistas">
+            <a class="pc__media" href="perfiles/atletas/" tabindex="-1" aria-hidden="true">
+              <img src="assets/perfil-atletas-760.webp" srcset="assets/perfil-atletas-760.webp 760w, assets/perfil-atletas.webp 1400w" sizes="(max-width: 734px) 84vw, 686px" width="1400" height="781" alt="Una atleta sale de los tacos en una pista de atletismo al atardecer" loading="lazy" decoding="async">
+            </a>
+            <p class="pc__text"><b>Atletas y deportistas.</b> Para quien entrena con disciplina y cuida cada fase: la preparación, el esfuerzo y el descanso. <a class="more" href="perfiles/atletas/">Ver perfil<span class="sr-only">: Atletas y deportistas</span></a></p>
+          </li>
+          <li class="pc__card" aria-roledescription="diapositiva" aria-label="4 de 6: Gamers y diseñadores">
+            <a class="pc__media" href="perfiles/gamers-y-disenadores/" tabindex="-1" aria-hidden="true">
+              <img src="assets/perfil-gamers-760.webp" srcset="assets/perfil-gamers-760.webp 760w, assets/perfil-gamers.webp 1400w" sizes="(max-width: 734px) 84vw, 686px" width="1400" height="781" alt="Un jugador con cascos y una diseñadora con tableta gráfica trabajan en su estudio" loading="lazy" decoding="async">
+            </a>
+            <p class="pc__text"><b>Gamers y diseñadores.</b> Para sesiones largas frente a la pantalla que piden foco y reflejos. <a class="more" href="perfiles/gamers-y-disenadores/">Ver perfil<span class="sr-only">: Gamers y diseñadores</span></a></p>
+          </li>
+          <li class="pc__card" aria-roledescription="diapositiva" aria-label="5 de 6: Doctores">
+            <a class="pc__media" href="perfiles/doctores/" tabindex="-1" aria-hidden="true">
+              <img src="assets/perfil-doctores-760.webp" srcset="assets/perfil-doctores-760.webp 760w, assets/perfil-doctores.webp 1400w" sizes="(max-width: 734px) 84vw, 686px" width="1400" height="781" alt="Un cirujano con mascarilla y gorro sostiene un instrumental" loading="lazy" decoding="async">
+            </a>
+            <p class="pc__text"><b>Doctores.</b> Para profesionales sanitarios con turnos exigentes y decisiones que piden precisión. <a class="more" href="perfiles/doctores/">Ver perfil<span class="sr-only">: Doctores</span></a></p>
+          </li>
+          <li class="pc__card" aria-roledescription="diapositiva" aria-label="6 de 6: Cualquier persona que requiera concentración">
+            <a class="pc__media" href="perfiles/concentracion/" tabindex="-1" aria-hidden="true">
+              <img src="assets/perfil-concentracion-760.webp" srcset="assets/perfil-concentracion-760.webp 760w, assets/perfil-concentracion.webp 1400w" sizes="(max-width: 734px) 84vw, 686px" width="1400" height="781" alt="Un skater salta con su tabla entre hojas de otoño que caen" loading="lazy" decoding="async">
+            </a>
+            <p class="pc__text"><b>Cualquier persona que requiera concentración.</b> Para cualquiera que quiera dar lo mejor de sí cuando más lo necesita. <a class="more" href="perfiles/concentracion/">Ver perfil<span class="sr-only">: Cualquier persona que requiera concentración</span></a></p>
+          </li>
         </ul>
-
-        <div class="profiles__foot reveal">
-          <a class="btn btn--ghost" href="#elegir">Descubrir mi fórmula adecuada</a>
+        <div class="pc__nav wrap wrap--wide">
           <p class="fine"><i class="ph-light ph-shield-check" aria-hidden="true"></i><span class="draft">Aquí quién supervisa estos perfiles y con qué fuentes.</span></p>
+          <div class="pc__arrows">
+            <button class="pc__arrow" type="button" aria-label="Perfil anterior" data-carousel-prev><i class="ph ph-caret-left" aria-hidden="true"></i></button>
+            <button class="pc__arrow" type="button" aria-label="Perfil siguiente" data-carousel-next><i class="ph ph-caret-right" aria-hidden="true"></i></button>
+          </div>
         </div>
       </div>
     </section>

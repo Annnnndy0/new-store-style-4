@@ -227,16 +227,19 @@ function profilePage(pr, pi) {
     path: `perfiles/${pr.slug}/`,
     title: pr.title ? `${plain}: ${pr.title.charAt(0).toLowerCase()}${pr.title.slice(1)}` : plain,
     desc: `Perfil ${pr.n} · ${plain}: para quién está pensado, qué dice la ficha oficial de los productos y qué conviene saber antes de empezar.`,
-    trail: [{ label: 'A quién va dirigido', path: '#perfiles' }, { label: `Perfil ${pr.n}` }],
+    trail: [{ label: 'A quién va dirigido', path: '#perfiles' }, { label: plain }],
     bodyClass: 'is-profile',
-    preload: pr.img,
-    lnav: () => ({ title: `Perfil ${pr.n}`, links: [['#para-quien', 'Para quién'], ['#ficha', 'Qué dice la ficha'], ['#antes', 'Antes de empezar'], ['#estudios', 'Estudios']], cta: { href: '#productos-perfil', label: 'Ver fórmulas' } }),
+    preload: `${pr.card}${pr.video ? '-760' : ''}.webp`,
+    lnav: () => ({ title: pr.short || plain, links: [['#para-quien', 'Para quién'], ['#ficha', 'Qué dice la ficha'], ['#antes', 'Antes de empezar'], ['#estudios', 'Estudios']], cta: { href: '#productos-perfil', label: 'Ver fórmulas' } }),
     main: (r) => `
 ${hero({
-  kicker: `Perfil ${pr.n} · ${area}`,
-  title,
+  kicker: `Perfil ${pr.n}`,
+  title: pr.text ? `${area}. <span class="soft">${pr.text}</span>` : title,
   lede: d('Aquí para quién está pensado este perfil y qué dice la ficha oficial del producto, sin prometer resultados.'),
-  media: `<figure class="pmedia"><img src="${r(pr.img)}" width="${pr.w}" height="${pr.h}" alt="${esc(pr.alt)}" fetchpriority="high"></figure>`,
+  // El perfil de artistas lleva el vídeo; el resto, su foto
+  media: pr.video
+    ? `<figure class="pmedia pmedia--wide"><video src="${r(pr.video)}.mp4" poster="${r(pr.card)}-760.webp" muted loop playsinline autoplay preload="metadata" aria-label="${esc(pr.alt)}" data-autoplay></video></figure>`
+    : `<figure class="pmedia pmedia--wide"><img src="${r(pr.card)}.webp" width="1400" height="781" alt="${esc(pr.alt)}" fetchpriority="high"></figure>`,
   after: `
           <div class="phero__ctas">${btn(r('#elegir'), 'Descubrir mi fórmula')} ${more(r('productos/'), 'Ver las 4 fórmulas')}</div>
           <p class="fine"><i class="ph-light ph-shield-check" aria-hidden="true"></i><span>${d('Aquí quién supervisa estos perfiles y con qué fuentes.')}</span></p>`,

@@ -58,7 +58,7 @@ export function gnav(r) {
         ['Tu pedido', [['#pedido', 'Cómo funciona tu pedido'], ['envios/', 'Envíos y plazos'], ['devoluciones/', 'Devoluciones'], ['cuenta/', 'Consultar mi pedido']]],
       ])}${item('guias/', 'Aprende', 'fly-aprende', [
         ['Guías', [['guias/que-es/', '¿Qué es [producto]?'], ['guias/para-que-se-usa/', '¿Para qué se usa?'], ['guias/como-se-toma/', 'Cómo se toma y dosis'], ['guias/efectos-secundarios/', 'Efectos e interacciones'], ['guias/', 'Todas las guías']], true],
-        ['¿Para quién?', [['perfiles/neuro-regulacion/', 'Neuro-regulación'], ['perfiles/cronobiologia-y-sueno/', 'Cronobiología y sueño'], ['perfiles/modulacion-inflamatoria/', 'Modulación inflamatoria'], ['#perfiles', 'Los 6 perfiles']]],
+        ['¿Para quién?', [['perfiles/artistas/', 'Artistas'], ['perfiles/estudiantes-e-ingenieros/', 'Estudiantes e ingenieros'], ['perfiles/atletas/', 'Atletas y deportistas'], ['#perfiles', 'Los 6 perfiles']]],
         ['Evidencia', [['evidencia/', 'Estudios con su fuente'], ['#revision', 'Cómo revisamos la información'], ['guias/quien-no-deberia-usarlo/', 'Quién no debería usarlo'], ['guias/mitos-y-verdades/', 'Mitos y verdades']]],
       ])}${item('preguntas-frecuentes/', 'Ayuda', 'fly-ayuda', [
         ['Ayuda', [['preguntas-frecuentes/', 'Preguntas frecuentes'], ['envios/', 'Envíos y plazos'], ['devoluciones/', 'Devoluciones'], ['cuenta/', 'Consultar mi pedido'], ['contacto/', 'Contacto']], true],

@@ -137,44 +137,51 @@ export const GUIDES = [
 ];
 
 /* ---------- Perfiles ("A quién va dirigido") ----------
-   Áreas, títulos e imágenes: los del carrusel del index. Los perfiles 4 a 6 siguen siendo de muestra. */
+   Los 6 del carrusel del index, en este orden. text: la frase de su tarjeta (texto de muestra a
+   revisar). img: cuadrada para la cabecera de su página; card: la foto horizontal de la tarjeta. */
 
 export const PROFILES = [
   {
-    slug: 'neuro-regulacion', n: '01', area: 'Neuro-regulación', icon: 'ph-microscope',
-    title: 'Estrés crónico, sobrecarga cognitiva y dispersión mental',
-    img: 'assets/aud-focus.webp', w: 800, h: 800, fig: 'Fig. 01 · Soma',
-    alt: 'Busto de escultura blanca con un anillo de luz alrededor de la frente, en un laboratorio',
+    slug: 'artistas', short: 'Artistas', n: '01', area: 'Artistas', icon: 'ph-paint-brush',
+    title: 'Para quien pasa horas creando y quiere mantener la atención en cada trazo',
+    text: 'Para quien pasa horas creando y quiere mantener la atención en cada trazo.',
+    img: 'assets/perfil-artistas-cuadrada.webp', w: 900, h: 900, card: 'assets/perfil-artistas', video: 'assets/perfil-artistas',
+    alt: 'Una artista pinta un lienzo al aire libre, entre espigas doradas',
   },
   {
-    slug: 'cronobiologia-y-sueno', n: '02', area: 'Cronobiología y sueño', icon: 'ph-moon-stars',
-    title: 'Insomnio de conciliación y fragmentación del sueño profundo',
-    img: 'assets/aud-sleep.webp', w: 800, h: 800, fig: 'Fig. 02 · Hypnos',
-    alt: 'Figura blanca flotando en postura de descanso, con puntos de luz a lo largo del cuerpo',
+    slug: 'estudiantes-e-ingenieros', short: 'Estudiantes e ingenieros', n: '02', area: 'Estudiantes, académicos e ingenieros', icon: 'ph-graduation-cap',
+    title: 'Para jornadas largas de estudio, investigación o taller en las que cada detalle cuenta',
+    text: 'Para jornadas largas de estudio, investigación o taller en las que cada detalle cuenta.',
+    img: 'assets/perfil-ingenieros-cuadrada.webp', w: 900, h: 900, card: 'assets/perfil-ingenieros',
+    alt: 'Tres estudiantes de ingeniería montan un circuito en un taller',
   },
   {
-    slug: 'modulacion-inflamatoria', n: '03', area: 'Modulación inflamatoria', icon: 'ph-heartbeat',
-    title: 'Dolor osteoarticular, rigidez matutina y tensión muscular',
-    img: 'assets/aud-helix.webp', w: 800, h: 800, fig: 'Fig. 03 · Cinética',
-    alt: 'Escultura blanca de una doble hélice entrelazada con nervaduras de hoja',
+    slug: 'atletas', short: 'Atletas', n: '03', area: 'Atletas y deportistas', icon: 'ph-person-simple-run',
+    title: 'Para quien entrena con disciplina y cuida la preparación, el esfuerzo y el descanso',
+    text: 'Para quien entrena con disciplina y cuida cada fase: la preparación, el esfuerzo y el descanso.',
+    img: 'assets/perfil-atletas-cuadrada.webp', w: 900, h: 900, card: 'assets/perfil-atletas',
+    alt: 'Una atleta sale de los tacos en una pista de atletismo al atardecer',
   },
   {
-    slug: 'perfil-4', n: '04', area: null, icon: 'ph-shield-check',
-    title: null,
-    img: 'assets/read-shield.webp', w: 1200, h: 900, fig: 'Fig. 04 · Égida',
-    alt: 'Un cerebro blanco protegido dentro de un escudo de púas',
+    slug: 'gamers-y-disenadores', short: 'Gamers y diseñadores', n: '04', area: 'Gamers y diseñadores', icon: 'ph-game-controller',
+    title: 'Para sesiones largas frente a la pantalla que piden foco y reflejos',
+    text: 'Para sesiones largas frente a la pantalla que piden foco y reflejos.',
+    img: 'assets/perfil-gamers-cuadrada.webp', w: 900, h: 900, card: 'assets/perfil-gamers',
+    alt: 'Un jugador con cascos y una diseñadora con tableta gráfica trabajan en su estudio',
   },
   {
-    slug: 'perfil-5', n: '05', area: null, icon: 'ph-lightning',
-    title: null,
-    img: 'assets/read-focus.webp', w: 1200, h: 900, fig: 'Fig. 05 · Impulso',
-    alt: 'Un cerebro blanco en movimiento que deja una estela al avanzar',
+    slug: 'doctores', short: 'Doctores', n: '05', area: 'Doctores', icon: 'ph-stethoscope',
+    title: 'Para profesionales sanitarios con turnos exigentes y decisiones que piden precisión',
+    text: 'Para profesionales sanitarios con turnos exigentes y decisiones que piden precisión.',
+    img: 'assets/perfil-doctores-cuadrada.webp', w: 900, h: 900, card: 'assets/perfil-doctores',
+    alt: 'Un cirujano con mascarilla y gorro sostiene un instrumental',
   },
   {
-    slug: 'perfil-6', n: '06', area: null, icon: 'ph-brain',
-    title: null,
-    img: 'assets/aud-psique.webp', w: 800, h: 800, fig: 'Fig. 06 · Psique',
-    alt: 'Escultura de un cerebro de porcelana blanca sobre fondo claro',
+    slug: 'concentracion', short: 'Concentración', n: '06', area: 'Cualquier persona que requiera concentración', icon: 'ph-target',
+    title: 'Para cualquiera que quiera dar lo mejor de sí cuando más lo necesita',
+    text: 'Para cualquiera que quiera dar lo mejor de sí cuando más lo necesita.',
+    img: 'assets/perfil-concentracion-cuadrada.webp', w: 900, h: 900, card: 'assets/perfil-concentracion',
+    alt: 'Un skater salta con su tabla entre hojas de otoño que caen',
   },
 ];
 

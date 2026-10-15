@@ -44,7 +44,7 @@ Pensado para que cualquiera encuentre rápido lo que busca: primero qué es y po
 | 05 | Compra con tranquilidad (carrusel de 5 tarjetas) | gris | «Get the highlights» |
 | 06 | Pide hoy. Paga al recibirlo (4 pasos) + Enviamos a tu país | blanco | Bloque editorial + cifras grandes |
 | 07 | Guías (texto SEO + 6 tarjetas con respuesta rápida) | gris | Tarjetas con botón + |
-| 08 | A quién va dirigido (6 perfiles) | blanco | Iconos grandes |
+| 08 | A quién va dirigido: carrusel de 6 perfiles (Artistas con vídeo, Estudiantes/académicos/ingenieros, Atletas, Gamers y diseñadores, Doctores, Cualquier persona que requiera concentración) | blanco | «Set to stunning.»: tarjetas de foto grandes, frase debajo y flechas abajo a la derecha |
 | 09 | Estudios + Cómo revisamos la información | gris | Bloque editorial con imagen que entra por el lado |
 | 10 | Preguntas frecuentes | blanco | Acordeón con + |
 | 11 | Empieza cuando quieras (3 accesos) | gris | «Ways to buy» |
@@ -62,7 +62,7 @@ Generadas con IA en Figma (archivo «New store · imágenes de laboratorio»), c
 | `laboratorio.webp` | Carrusel: «Información con sus fuentes» |
 | `comprimidos.webp` | Guía «¿Qué es [producto]?» |
 
-Reutilizadas de lab-lab: `producto-1.webp` (la foto de prueba del blíster, en los 4 productos), los perfiles (`aud-*`), las guías (`read-*`), el cerebro (`brain.webp`) y los objetos de los pasos (`order-*`).
+Reutilizadas de lab-lab: `producto-1.webp` (la foto de prueba del blíster, en los 4 productos), las guías (`read-*`), el cerebro (`brain.webp`) y los objetos de los pasos (`order-*`).
 
 Para poner la foto real de cada producto, cambia el `src` de su imagen en `index.html` (tarjetas de «Cuatro fórmulas», cabecera de la tabla y carrusel) o sustituye `assets/producto-1.webp`. Mejor con fondo transparente.
 
@@ -131,3 +131,7 @@ git push
 ```
 
 GitHub Pages vuelve a publicar en uno o dos minutos.
+
+## Perfiles (A quién va dirigido)
+
+Fotos y vídeo aportados por ti: `assets/perfil-*.webp` (tarjeta horizontal, versión de 760 px y recorte cuadrado) y `assets/perfil-artistas.webm` / `.mp4` (vídeo sin sonido, 4 s en bucle; solo se reproduce cuando está en pantalla y se puede pausar). Para cambiar uno, sustituye el archivo con el mismo nombre. Las frases de cada tarjeta son texto de muestra: están en `index.html` y en `_src/data.mjs` (`PROFILES`), que también genera sus páginas `perfiles/…`.
