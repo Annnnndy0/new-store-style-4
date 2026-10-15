@@ -3,6 +3,7 @@
 // lab-lab), barra de la página, carrusel "Compra con tranquilidad", comparador en móvil,
 // "Ayúdame a elegir", respuestas rápidas de las guías, preguntas frecuentes, pie plegable y
 // apariciones al hacer scroll. Sin JavaScript la página se ve entera y los enlaces funcionan.
+// Sirve para el index y las subpáginas, y expone window.BrandCart para tienda.js.
 (() => {
   const $ = (s, r = document) => r.querySelector(s);
   const $$ = (s, r = document) => [...r.querySelectorAll(s)];
@@ -10,15 +11,13 @@
   const desktop = window.matchMedia('(min-width: 834px)');
 
   // ---------------------------------------------------------------------------------------------
-  // Catálogo (precios de muestra de lab-lab; mismos ids que catalog.js)
+  // Catálogo: catalog.js (lo genera build.mjs a partir de _src/data.mjs). ROOT lleva de la página
+  // actual a la raíz del sitio (las subpáginas lo indican en <body data-root="../">).
   // ---------------------------------------------------------------------------------------------
-  const CATALOG = {
-    p1: { name: 'Producto 1', price: 24.9, url: 'productos/producto-1/', img: 'assets/producto-1.webp' },
-    p2: { name: 'Producto 2', price: 34.9, url: 'productos/producto-2/', img: 'assets/producto-1.webp' },
-    p3: { name: 'Producto 3', price: 44.9, url: 'productos/producto-3/', img: 'assets/producto-1.webp' },
-    p4: { name: 'Producto 4', price: 59.9, url: 'productos/producto-4/', img: 'assets/producto-1.webp' },
-  };
-  const FREE_FROM = 150;
+  const CATALOG = (window.CATALOG && window.CATALOG.products) || {};
+  const FREE_FROM = (window.CATALOG && window.CATALOG.shipping.freeFrom) || 150;
+  const ROOT = document.body.dataset.root || '';
+  const MAX = 10;
   const eur = new Intl.NumberFormat('es-ES', { style: 'currency', currency: 'EUR' });
 
   // ---------------------------------------------------------------------------------------------
@@ -36,13 +35,13 @@
     if (openItem) setItem(openItem, false);
     openItem = item;
     setItem(item, true);
-    scrim.classList.add('is-on');
+    scrim?.classList.add('is-on');
   }
   function closeFly() {
     if (!openItem) return;
     setItem(openItem, false);
     openItem = null;
-    if (!bagOpen) scrim.classList.remove('is-on');
+    if (!bagOpen) scrim?.classList.remove('is-on');
   }
   function setItem(item, on) {
     item.classList.toggle('is-open', on);
@@ -67,13 +66,13 @@
       if (openItem === item && !item.contains(e.relatedTarget)) closeFly();
     });
   });
-  $('[data-gnav]').addEventListener('pointerleave', (e) => {
+  $('[data-gnav]')?.addEventListener('pointerleave', (e) => {
     if (e.pointerType !== 'mouse') return;
     clearTimeout(hoverTimer);
     hoverTimer = setTimeout(closeFly, 120);
   });
-  $('[data-gnav]').addEventListener('pointerenter', () => clearTimeout(hoverTimer));
-  scrim.addEventListener('click', () => { closeFly(); closeBag(); });
+  $('[data-gnav]')?.addEventListener('pointerenter', () => clearTimeout(hoverTimer));
+  scrim?.addEventListener('click', () => { closeFly(); closeBag(); });
   document.addEventListener('keydown', (e) => {
     if (e.key !== 'Escape') return;
     if (openItem) {
@@ -81,7 +80,7 @@
       closeFly();
       btn.focus();
     }
-    if (bagOpen) { closeBag(); bagToggle.focus(); }
+    if (bagOpen) { closeBag(); bagToggle?.focus(); }
     if (mnavOpen) setMnav(false);
   });
   // Un clic en un enlace del panel que lleva a esta misma página cierra el panel
@@ -98,7 +97,7 @@
   let mnavOpen = false;
 
   function setMnav(on) {
-    if (mnavOpen === on) return;
+    if (mnavOpen === on || !burger) return;
     mnavOpen = on;
     burger.setAttribute('aria-expanded', String(on));
     burger.setAttribute('aria-label', on ? 'Cerrar menú' : 'Abrir menú');
@@ -111,7 +110,7 @@
     mRoot.hidden = false;
     mSlot.replaceChildren();
   }
-  burger.addEventListener('click', () => setMnav(!mnavOpen));
+  burger?.addEventListener('click', () => setMnav(!mnavOpen));
   $$('[data-mnav-open]').forEach((btn) => btn.addEventListener('click', () => {
     const src = document.getElementById(btn.dataset.mnavOpen);
     const copy = src.querySelector('.fly__in').cloneNode(true);
@@ -122,7 +121,7 @@
     mSub.hidden = false;
     $('[data-mnav-back]').focus();
   }));
-  $('[data-mnav-back]').addEventListener('click', showRoot);
+  $('[data-mnav-back]')?.addEventListener('click', showRoot);
   $$('.mnav__list a').forEach((a) => a.addEventListener('click', () => setMnav(false)));
   desktop.addEventListener('change', (e) => { if (e.matches) setMnav(false); });
 
@@ -145,10 +144,12 @@
   function writeCart(lines) {
     try { localStorage.setItem(CART, JSON.stringify(lines)); } catch { /* modo privado */ }
   }
-  function addToCart(id) {
+  const listeners = new Set();
+  function addToCart(id, qty = 1) {
+    if (!CATALOG[id]) return;
     const lines = readCart();
     const line = lines.find((l) => l.id === id);
-    if (line) line.qty += 1; else lines.push({ id, qty: 1 });
+    if (line) line.qty = Math.min(MAX, line.qty + qty); else lines.push({ id, qty: Math.min(MAX, qty) });
     writeCart(lines);
     renderCart(id);
   }
@@ -157,6 +158,8 @@
     const count = lines.reduce((n, l) => n + l.qty, 0);
     const total = lines.reduce((n, l) => n + l.qty * CATALOG[l.id].price, 0);
     $$('[data-cart-count]').forEach((el) => { el.hidden = count === 0; el.textContent = count; });
+    listeners.forEach((fn) => fn(lines));
+    if (!bag || !bagToggle) return;
     bagToggle.setAttribute('aria-label', count ? `Carrito, ${count} ${count === 1 ? 'producto' : 'productos'}` : 'Carrito');
 
     const title = $('[data-bag-title]');
@@ -167,7 +170,7 @@
     list.replaceChildren(...lines.map((l) => {
       const p = CATALOG[l.id];
       const li = document.createElement('li');
-      li.innerHTML = `<img src="${p.img}" alt=""><span><b></b><small></small></span><span></span>`;
+      li.innerHTML = `<img src="${ROOT}${p.img}" alt=""><span><b></b><small></small></span><span></span>`;
       li.querySelector('b').textContent = p.name;
       li.querySelector('small').textContent = `Cantidad: ${l.qty}`;
       li.lastElementChild.textContent = eur.format(p.price * l.qty);
@@ -181,9 +184,11 @@
     }
   }
   function openBag() {
+    if (!bag) return;
     closeFly();
     // Justo debajo de la barra que esté a la vista (la global arriba del todo o la fija de la página)
-    const below = Math.max($('[data-gnav]').getBoundingClientRect().bottom, $('[data-lnav]').getBoundingClientRect().bottom);
+    const bottom = (sel) => $(sel)?.getBoundingClientRect().bottom || 0;
+    const below = Math.max(bottom('[data-gnav]'), bottom('[data-lnav]'));
     bag.style.top = `${Math.max(0, below) + 8}px`;
     bag.hidden = false;
     bagOpen = true;
@@ -195,19 +200,30 @@
     bagOpen = false;
     bagToggle.setAttribute('aria-expanded', 'false');
   }
-  bagToggle.setAttribute('aria-expanded', 'false');
-  bagToggle.addEventListener('click', (e) => {
+  bagToggle?.setAttribute('aria-expanded', 'false');
+  bagToggle?.addEventListener('click', (e) => {
     e.preventDefault();
     if (bagOpen) closeBag();
     else { renderCart(); openBag(); }
   });
   document.addEventListener('click', (e) => {
-    if (bagOpen && !bag.contains(e.target) && !bagToggle.contains(e.target)) closeBag();
+    if (bagOpen && !bag.contains(e.target) && !bagToggle?.contains(e.target)) closeBag();
   });
   document.addEventListener('click', (e) => {
     const btn = e.target.closest('[data-add]');
     if (!btn) return;
-    addToCart(btn.dataset.add);
+    // En la ficha de producto se añade la cantidad elegida en su selector
+    const qtyEl = btn.closest('[data-buy]')?.querySelector('[data-qty]');
+    const qty = qtyEl ? Number(qtyEl.textContent) || 1 : 1;
+    // "Comprar ahora": si ya está en el carrito no lo suma otra vez, solo deja la cantidad elegida
+    if (btn.dataset.then === 'checkout') {
+      const lines = readCart();
+      const line = lines.find((l) => l.id === btn.dataset.add);
+      if (line) { line.qty = Math.min(MAX, Math.max(line.qty, qty)); writeCart(lines); } else addToCart(btn.dataset.add, qty);
+      location.href = `${ROOT}checkout/`;
+      return;
+    }
+    addToCart(btn.dataset.add, qty);
     // Confirmación en el propio botón y en el desplegable
     const label = btn.textContent;
     btn.classList.add('is-added');
@@ -219,6 +235,16 @@
     bagTimer = setTimeout(() => { if (!bag.matches(':hover, :focus-within')) closeBag(); }, 5000);
   });
   window.addEventListener('storage', (e) => { if (e.key === CART) renderCart(); });
+
+  // Para tienda.js (página del carrito, checkout y pedidos)
+  window.BrandCart = {
+    root: ROOT,
+    max: MAX,
+    read: readCart,
+    write(lines) { writeCart(lines.filter((l) => CATALOG[l.id] && l.qty > 0)); renderCart(); },
+    add: addToCart,
+    onChange(fn) { listeners.add(fn); fn(readCart()); },
+  };
   renderCart();
 
   // ---------------------------------------------------------------------------------------------
@@ -232,17 +258,20 @@
     lToggle.setAttribute('aria-expanded', String(on));
     lMenu.classList.toggle('is-open', on);
   };
-  lToggle.addEventListener('click', () => setLmenu(lToggle.getAttribute('aria-expanded') !== 'true'));
-  $$('a', lMenu).forEach((a) => a.addEventListener('click', () => setLmenu(false)));
+  if (lToggle && lMenu) {
+    lToggle.addEventListener('click', () => setLmenu(lToggle.getAttribute('aria-expanded') !== 'true'));
+    $$('a', lMenu).forEach((a) => a.addEventListener('click', () => setLmenu(false)));
+  }
 
   const onScroll = () => {
+    if (!lnav) return;
     const stuck = lnav.getBoundingClientRect().top <= 0 && window.scrollY > 0;
     lnav.classList.toggle('is-stuck', stuck);
   };
   window.addEventListener('scroll', onScroll, { passive: true });
   onScroll();
 
-  const links = $$('.lnav__links a');
+  const links = $$('.lnav__links a').filter((a) => a.getAttribute('href').startsWith('#'));
   const targets = links.map((a) => document.querySelector(a.getAttribute('href'))).filter(Boolean);
   const spy = new IntersectionObserver((entries) => {
     entries.forEach((en) => {
@@ -347,12 +376,12 @@
       const p = CATALOG[id];
       out.className = 'quiz__result';
       out.innerHTML = `
-        <img src="${p.img}" alt="">
+        <img src="${ROOT}${p.img}" alt="">
         <p>Te recomendamos</p>
         <h4>${p.name} · ${eur.format(p.price)}</h4>
         <div class="quiz__result-actions">
           <button class="btn btn--buy btn--sm" type="button" data-add="${id}">Añadir al carrito</button>
-          <a class="more" href="${p.url}">Ver la ficha</a>
+          <a class="more" href="${ROOT}${p.url}">Ver la ficha</a>
         </div>`;
     });
   }

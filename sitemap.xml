@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+  <url><loc>https://example.com/</loc></url>
+  <url><loc>https://example.com/productos/</loc></url>
+  <url><loc>https://example.com/productos/producto-1/</loc></url>
+  <url><loc>https://example.com/productos/producto-2/</loc></url>
+  <url><loc>https://example.com/productos/producto-3/</loc></url>
+  <url><loc>https://example.com/productos/producto-4/</loc></url>
+  <url><loc>https://example.com/guias/</loc></url>
+  <url><loc>https://example.com/guias/que-es/</loc></url>
+  <url><loc>https://example.com/guias/para-que-se-usa/</loc></url>
+  <url><loc>https://example.com/guias/como-se-toma/</loc></url>
+  <url><loc>https://example.com/guias/efectos-secundarios/</loc></url>
+  <url><loc>https://example.com/guias/quien-no-deberia-usarlo/</loc></url>
+  <url><loc>https://example.com/guias/mitos-y-verdades/</loc></url>
+  <url><loc>https://example.com/perfiles/neuro-regulacion/</loc></url>
+  <url><loc>https://example.com/perfiles/cronobiologia-y-sueno/</loc></url>
+  <url><loc>https://example.com/perfiles/modulacion-inflamatoria/</loc></url>
+  <url><loc>https://example.com/perfiles/perfil-4/</loc></url>
+  <url><loc>https://example.com/perfiles/perfil-5/</loc></url>
+  <url><loc>https://example.com/perfiles/perfil-6/</loc></url>
+  <url><loc>https://example.com/evidencia/</loc></url>
+  <url><loc>https://example.com/preguntas-frecuentes/</loc></url>
+  <url><loc>https://example.com/envios/</loc></url>
+  <url><loc>https://example.com/devoluciones/</loc></url>
+  <url><loc>https://example.com/contacto/</loc></url>
+  <url><loc>https://example.com/aviso-legal/</loc></url>
+  <url><loc>https://example.com/privacidad/</loc></url>
+  <url><loc>https://example.com/cookies/</loc></url>
+  <url><loc>https://example.com/terminos/</loc></url>
+</urlset>

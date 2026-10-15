@@ -1,0 +1,208 @@
+<!doctype html>
+<html lang="es" class="no-js">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <title>Finalizar pedido | Brand</title>
+  <meta name="description" content="Datos de contacto y de entrega. Hoy no pagas nada: pagas al recibir el pedido.">
+  <meta name="robots" content="noindex, follow">
+  <link rel="canonical" href="https://example.com/checkout/">
+  <meta name="theme-color" content="#ffffff">
+  <meta property="og:type" content="website">
+  <meta property="og:locale" content="es_ES">
+  <meta property="og:site_name" content="Brand">
+  <meta property="og:title" content="Finalizar pedido">
+  <meta property="og:description" content="Datos de contacto y de entrega. Hoy no pagas nada: pagas al recibir el pedido.">
+  <meta property="og:url" content="https://example.com/checkout/">
+  <meta property="og:image" content="https://example.com/assets/og-imagen.jpg">
+  <meta name="twitter:card" content="summary_large_image">
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='-50 -50 100 100'%3E%3Cg stroke='%231d1d1f' stroke-width='6' stroke-linecap='round'%3E%3Cpath d='M0-46V-10M0 10V46M-46 0H-10M10 0H46M-32.5-32.5L-7-7M7 7L32.5 32.5M32.5-32.5L7-7M-7 7L-32.5 32.5'/%3E%3C/g%3E%3Ccircle r='8' fill='%231d1d1f'/%3E%3C/svg%3E">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,400..600&display=swap">
+  <link rel="stylesheet" href="https://unpkg.com/@phosphor-icons/web@2.1.1/src/regular/style.css">
+  <link rel="stylesheet" href="https://unpkg.com/@phosphor-icons/web@2.1.1/src/light/style.css">
+  <link rel="stylesheet" href="../estilos.css?v=3">
+  <link rel="stylesheet" href="../paginas.css?v=3">
+  <script>document.documentElement.classList.replace('no-js', 'js');</script>
+  <script type="application/ld+json">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Inicio","item":"https://example.com/"}]}</script>
+</head>
+<body class="sub is-checkout" data-root="../">
+  <a class="skip" href="#main">Saltar al contenido</a>
+
+  <svg class="sprite" aria-hidden="true" focusable="false">
+    <symbol id="i-brand" viewBox="-50 -50 100 100">
+      <g stroke="currentColor" stroke-width="5" stroke-linecap="round">
+        <path d="M0-46V-12M0 12V46M-46 0H-12M12 0H46M-32.5-32.5L-8.5-8.5M8.5 8.5L32.5 32.5M32.5-32.5L8.5-8.5M-8.5 8.5L-32.5 32.5"/>
+        <path d="M17.6-42.5L4.6-11.1M-4.6 11.1L-17.6 42.5M42.5-17.6L11.1-4.6M-11.1 4.6L-42.5 17.6M42.5 17.6L11.1 4.6M-11.1-4.6L-42.5-17.6M17.6 42.5L4.6 11.1M-4.6-11.1L-17.6-42.5" stroke-width="3.5"/>
+      </g>
+      <circle r="7" fill="currentColor"/>
+    </symbol>
+  </svg>
+
+  <header class="gnav gnav--min">
+    <div class="gnav__bar wrap">
+      <a class="gnav__logo" href="../" aria-label="Brand, inicio"><svg aria-hidden="true"><use href="#i-brand"/></svg><span translate="no">Brand</span></a>
+      <p class="gnav__step"><i class="ph ph-lock-simple" aria-hidden="true"></i>Finalizar pedido · pagas al recibirlo</p>
+    </div>
+  </header>
+
+  <main id="main">
+
+    <section class="co" aria-labelledby="co-title">
+      <div class="wrap wrap--wide co__grid" data-checkout-wrap>
+        <form class="co__form" data-checkout novalidate aria-labelledby="co-title">
+          <h1 class="co__title" id="co-title">Finalizar pedido.</h1>
+          <p class="co__banner"><i class="ph-light ph-hand-coins" aria-hidden="true"></i><span><b>Hoy no pagas nada.</b> Pagas al recibir el pedido, en la puerta.</span></p>
+
+          <fieldset class="co__step">
+            <legend><span class="co__n">1</span>¿Cómo te contactamos?</legend>
+            <div class="co__row">
+              
+                <div class="field ">
+                  <input id="co-email" name="email" placeholder=" " type="email" autocomplete="email" required aria-describedby="co-email-err">
+                  <label for="co-email">Email</label>
+                  
+                  <p class="field__err" id="co-email-err" hidden></p>
+                </div>
+              
+                <div class="field ">
+                  <input id="co-phone" name="phone" placeholder=" " type="tel" autocomplete="tel" required aria-describedby="co-phone-hint co-phone-err">
+                  <label for="co-phone">Teléfono</label>
+                  <p class="field__hint" id="co-phone-hint"><span class="draft">Aquí para qué se usa: confirmar el pedido y que el transportista pueda avisarte.</span></p>
+                  <p class="field__err" id="co-phone-err" hidden></p>
+                </div>
+            </div>
+          </fieldset>
+
+          <fieldset class="co__step">
+            <legend><span class="co__n">2</span>¿Dónde lo recibes?</legend>
+            <div class="choices">
+              <label class="choice">
+                <input type="radio" name="delivery" value="home" checked>
+                <span class="choice__box"><i class="ph-light ph-house" aria-hidden="true"></i><b>Domicilio particular</b><small>Te lo llevamos a la dirección que indiques.</small></span>
+              </label>
+              <label class="choice">
+                <input type="radio" name="delivery" value="point">
+                <span class="choice__box"><i class="ph-light ph-storefront" aria-hidden="true"></i><b>Punto de recogida</b><small><span class="draft">Aquí si se puede pagar al recibir en el punto.</span></small></span>
+              </label>
+              <label class="choice">
+                <input type="radio" name="delivery" value="locker">
+                <span class="choice__box"><i class="ph-light ph-lock-key" aria-hidden="true"></i><b>Casillero automático</b><small><span class="draft">Aquí si se puede pagar al recibir en el casillero.</span></small></span>
+              </label>
+            </div>
+            <p class="note" data-pickup-note hidden><i class="ph-light ph-map-pin" aria-hidden="true"></i><span><span class="draft">Aquí el buscador de puntos de recogida y casilleros del transportista. Mientras tanto, indica abajo la dirección del punto elegido.</span></span></p>
+          </fieldset>
+
+          <fieldset class="co__step">
+            <legend><span class="co__n">3</span>Dirección de entrega</legend>
+            
+                <div class="field ">
+                  <input id="co-name" name="name" placeholder=" " autocomplete="name" required aria-describedby="co-name-err">
+                  <label for="co-name">Nombre y apellidos</label>
+                  
+                  <p class="field__err" id="co-name-err" hidden></p>
+                </div>
+            
+                <div class="field ">
+                  <input id="co-address" name="address" placeholder=" " autocomplete="address-line1" required aria-describedby="co-address-err">
+                  <label for="co-address">Dirección</label>
+                  
+                  <p class="field__err" id="co-address-err" hidden></p>
+                </div>
+            
+                <div class="field ">
+                  <input id="co-address2" name="address2" placeholder=" " autocomplete="address-line2">
+                  <label for="co-address2">Piso, puerta… (opcional)</label>
+                  
+                  <p class="field__err" id="co-address2-err" hidden></p>
+                </div>
+            <div class="co__row co__row--3">
+              
+                <div class="field ">
+                  <input id="co-zip" name="zip" placeholder=" " autocomplete="postal-code" required aria-describedby="co-zip-err">
+                  <label for="co-zip">Código postal</label>
+                  
+                  <p class="field__err" id="co-zip-err" hidden></p>
+                </div>
+              
+                <div class="field ">
+                  <input id="co-city" name="city" placeholder=" " autocomplete="address-level2" required aria-describedby="co-city-err">
+                  <label for="co-city">Ciudad</label>
+                  
+                  <p class="field__err" id="co-city-err" hidden></p>
+                </div>
+              <div class="field field--select">
+                <select id="co-country" name="country" autocomplete="country" required data-country>
+                  <optgroup label="Unión Europea"><option value="DE">Alemania</option><option value="AT">Austria</option><option value="BE">Bélgica</option><option value="BG">Bulgaria</option><option value="CY">Chipre</option><option value="CZ">Chequia</option><option value="HR">Croacia</option><option value="DK">Dinamarca</option><option value="SK">Eslovaquia</option><option value="SI">Eslovenia</option><option value="ES" selected>España</option><option value="EE">Estonia</option><option value="FI">Finlandia</option><option value="FR">Francia</option><option value="GR">Grecia</option><option value="HU">Hungría</option><option value="IE">Irlanda</option><option value="IT">Italia</option><option value="LV">Letonia</option><option value="LT">Lituania</option><option value="LU">Luxemburgo</option><option value="MT">Malta</option><option value="NL">Países Bajos</option><option value="PL">Polonia</option><option value="PT">Portugal</option><option value="RO">Rumanía</option><option value="SE">Suecia</option></optgroup>
+                  <optgroup label="Fuera de la UE"><option value="GB">Reino Unido</option><option value="CH">Suiza</option><option value="NO">Noruega</option><option value="IS">Islandia</option></optgroup>
+                </select>
+                <label for="co-country">País</label>
+                <i class="ph ph-caret-down" aria-hidden="true"></i>
+              </div>
+            </div>
+            <p class="note" data-customs-note hidden><i class="ph-light ph-globe-hemisphere-west" aria-hidden="true"></i><span>Sale de la UE: el envío puede pasar aduana. <span class="draft">Aquí quién paga los impuestos de importación.</span></span></p>
+            <div class="field field--area">
+              <textarea id="co-notes" name="notes" rows="2" placeholder=" "></textarea>
+              <label for="co-notes">Notas para el repartidor (opcional)</label>
+            </div>
+          </fieldset>
+
+          <fieldset class="co__step">
+            <legend><span class="co__n">4</span>¿Cómo pagas?</legend>
+            <label class="choice choice--wide">
+              <input type="radio" name="payment" value="cod" checked>
+              <span class="choice__box"><i class="ph-light ph-hand-coins" aria-hidden="true"></i><b>Pago al recibir (contra reembolso)</b><small><span class="draft">Aquí qué acepta el transportista en la puerta: efectivo, tarjeta o móvil.</span></small></span>
+            </label>
+          </fieldset>
+
+          <div class="co__checks">
+            <label class="check"><input type="checkbox" name="terms" required><span>He leído y acepto los <a href="../terminos/" target="_blank" rel="noopener">términos de venta</a>.</span></label>
+            <label class="check"><input type="checkbox" name="withdrawal" required><span>He leído la información sobre el <a href="../devoluciones/" target="_blank" rel="noopener">derecho de desistimiento</a> (14 días).</span></label>
+            <p class="field__err" data-checks-err hidden>Marca las dos casillas para continuar.</p>
+          </div>
+
+          <button class="btn btn--buy btn--wide btn--lg" type="submit">Confirmar pedido · pagas al recibirlo</button>
+          <p class="co__msg" data-co-msg role="alert"></p>
+          <p class="note"><i class="ph-light ph-info" aria-hidden="true"></i><span>Prototipo: el pedido se guarda solo en este navegador y no se envía a ningún servidor. <span class="draft">Aquí irá la conexión con la plataforma de la tienda.</span></span></p>
+        </form>
+
+        <aside class="co__sum" aria-labelledby="co-sum-title" data-co-sum>
+          <div class="co__sumhead">
+            <h2 class="co__sumtitle" id="co-sum-title">Tu pedido <span data-sum-total-head></span></h2>
+            <button class="co__sumtoggle" type="button" aria-expanded="true" data-sum-toggle>Ver detalle<i class="ph ph-caret-down" aria-hidden="true"></i></button>
+          </div>
+          <div class="co__sumbody" data-sum-body>
+            <ul class="slines" data-sum-items></ul>
+            
+              <div class="meter" data-meter>
+                <p class="meter__text" data-meter-text>Envío gratis a partir de 150&nbsp;€</p>
+                <span class="meter__bar" aria-hidden="true"><span data-meter-bar></span></span>
+              </div>
+            
+              <dl class="totals" data-totals>
+                <div><dt>Subtotal</dt><dd data-t-sub>—</dd></div>
+                <div><dt>Envío <small><span class="draft">importe de muestra</span></small></dt><dd data-t-ship>—</dd></div>
+                <div class="totals__sum"><dt>Total a pagar al recibirlo</dt><dd data-t-total>—</dd></div>
+              </dl>
+            <p class="center"><a class="more" href="../carrito/">Editar el carrito</a></p>
+          </div>
+        </aside>
+      </div>
+
+      <div class="wrap empty" data-checkout-empty hidden>
+        <i class="ph-light ph-handbag" aria-hidden="true"></i>
+        <h2 class="empty__title">Tu carrito está vacío.</h2>
+        <p class="empty__text">Añade alguna fórmula para poder finalizar el pedido.</p>
+        <a class="btn btn--buy" href="../productos/">Ver los productos</a>
+      </div>
+    </section>
+  </main>
+
+  <footer class="foot foot--min"><div class="wrap foot__base"><p>© 2026 <span translate="no">Brand</span>. Pagas al recibir tu pedido.</p><ul class="foot__legal"><li><a href="../privacidad/">Privacidad</a></li><li><a href="../terminos/">Términos de venta</a></li><li><a href="../contacto/">Contacto</a></li></ul></div></footer>
+
+  <script src="../catalog.js?v=3" defer></script>
+  <script src="../interfaz.js?v=3" defer></script>
+  <script src="../tienda.js?v=3" defer></script>
+</body>
+</html>

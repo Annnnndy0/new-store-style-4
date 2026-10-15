@@ -1,0 +1,7 @@
+User-agent: *
+Disallow: /carrito/
+Disallow: /checkout/
+Disallow: /pedido-confirmado/
+Disallow: /cuenta/
+
+Sitemap: https://example.com/sitemap.xml

@@ -1,6 +1,8 @@
-# Brand · propuesta «Style 4» (página principal)
+# Brand · propuesta «Style 4»
 
-Rediseño completo del index de lab-lab con el estilo de la página del iPhone Duo de Apple (ver `DESIGN.md`). Mismo contenido y mismos enlaces que lab-lab; cambia cómo se presenta y cómo se ordena: galería blanca, producto protagonista, tipografía grande y compacta, bandas gris claro con tarjetas blancas y el azul solo para comprar.
+Rediseño completo de lab-lab (la página principal y sus 31 subpáginas) con el estilo de la página del iPhone Duo de Apple (ver `DESIGN.md`). Mismo contenido y mismos enlaces que lab-lab; cambia cómo se presenta y cómo se ordena: galería blanca, producto protagonista, tipografía grande y compacta, bandas gris claro con tarjetas blancas y el azul solo para comprar.
+
+Publicado en **https://annnnndy0.github.io/new-store-style-4/** (repositorio `Annnnndy0/new-store-style-4`).
 
 ## Ver en local
 
@@ -12,9 +14,14 @@ También está en `.claude/launch.json` como `style-4` (puerto 5186).
 
 | Archivo | Qué es |
 |---|---|
-| `index.html` | La página. Todo el texto está en el HTML (SEO) y se lee también sin JavaScript. |
-| `estilos.css` | Colores, tipografía (SF Pro en Apple, Inter en el resto), secciones y móvil. |
-| `interfaz.js` | Barra con paneles, menú móvil, carrito, barra de secciones, carrusel, comparador, «Ayúdame a elegir», guías, preguntas, pie y apariciones. Sin librerías. |
+| `index.html` | La página principal (a mano). Todo el texto está en el HTML (SEO) y se lee también sin JavaScript. Su barra global y su pie los reescribe `build.mjs` entre las marcas `<!-- barra:… -->` y `<!-- pie:… -->`. |
+| `build.mjs` + `_src/` | Generador de las 31 subpáginas (ver «Subpáginas»). |
+| `estilos.css` | Colores, tipografía (SF Pro en Apple, Inter en el resto), secciones y móvil. Lo usan todas las páginas. |
+| `paginas.css` | Piezas propias de las subpáginas: ficha de producto, carrito, checkout, artículos, formularios… |
+| `interfaz.js` | Común a todas: barra con paneles, menú móvil, carrito desplegable, barra de secciones, carrusel, comparador, «Ayúdame a elegir», preguntas, pie y apariciones. Sin librerías. |
+| `tienda.js` | Subpáginas: galería y cantidad de la ficha, página del carrito, checkout, pedido confirmado, consulta del pedido, contacto, filtros y buscadores. |
+| `catalog.js`, `sitemap.xml`, `robots.txt` | Los genera `build.mjs`. |
+| `PROMPTS-IMAGENES.md` | Prompts para generar con Gemini / Nano Banana las fotos que faltan (sobre todo las de tus 4 productos). |
 | `assets/` | Imágenes en WebP (las de IA y las reutilizadas de lab-lab) y `og-imagen.jpg` para compartir. |
 | `referencias-ia/` | Originales PNG de las imágenes generadas con IA. |
 | `DESIGN.md` | Resumen del sistema de diseño de la referencia. |
@@ -75,8 +82,52 @@ Lo subrayado con puntos (clase `.draft`) hay que sustituirlo, igual que en lab-l
 
 ## Qué no hace todavía
 
-- Los enlaces llevan a las rutas de las subpáginas de lab-lab (`productos/`, `guias/que-es/`…); en esta carpeta todavía no existen.
-- El carrito guarda en el navegador con la misma clave que lab-lab (`lab-cart`) y muestra lo añadido en el desplegable; no hay página de carrito aquí.
+- El carrito y los pedidos se guardan solo en el navegador (`lab-cart` y `lab-orders`, como en lab-lab) y no se envían a ningún servidor. De cada pedido se guardan el email, el nombre, la ciudad, el país y los productos; nunca el teléfono ni la dirección.
+- El formulario de contacto muestra un mensaje, pero no envía nada.
+- La versión en inglés todavía no existe.
 - «Ayúdame a elegir» usa una regla provisional (en `interfaz.js`): el formato N recomienda el Producto N; si no hay formato, decide el presupuesto (≤30 € → 1, ≤50 € → 3, más → 4); si tampoco, la frecuencia.
-- El buscador de Estudios envía `?q=` a `evidencia/`, que aún no filtra.
 - «Europa · Español» del pie es solo texto hasta que haya versión en inglés.
+
+## Subpáginas
+
+Se generan con:
+
+```bash
+node build.mjs
+```
+
+Escribe las 31 subpáginas, `catalog.js`, `sitemap.xml` y `robots.txt`, copia la barra global y el pie al index y avisa si hay enlaces internos rotos. Las carpetas generadas (`productos/`, `guias/`…) no se editan a mano.
+
+| Qué | Dónde |
+|---|---|
+| Productos, precios, envío, guías, perfiles, estudios, países, preguntas, legales | `_src/data.mjs` (copiado de lab-lab y adaptado a estas imágenes) |
+| `<head>`, barra global, barra de la página, pie con migas, tarjetas comunes | `_src/layout.mjs` |
+| Tienda, fichas, carrito, checkout, confirmación, consultar pedido | `_src/pages-shop.mjs` |
+| Guías, perfiles, estudios, preguntas, envíos, devoluciones, contacto, legales | `_src/pages-info.mjs` |
+
+| Página | Patrón de la referencia |
+|---|---|
+| `productos/` | Cabecera «Tienda.» con la segunda parte en gris, tarjetas de las 4 fórmulas, comparador y «La diferencia de comprar en Brand» |
+| `productos/producto-N/` | Página de compra de Apple: galería fija a la izquierda, compra a la derecha (cantidad, «Añadir al carrito», «Comprar ahora», caja de entrega), cifras grandes y la información en filas como las especificaciones técnicas; barra de compra fija en el móvil |
+| `carrito/` | «Revisa tu carrito.»: líneas con cantidad y «Eliminar», medidor de envío gratis y total |
+| `checkout/` | Barra mínima con candado, campos con la etiqueta dentro, opciones en tarjetas y resumen fijo (en móvil, plegado en una línea con el total) |
+| `pedido-confirmado/`, `cuenta/` | Confirmación con los siguientes pasos y consulta del pedido con su estado |
+| `guias/` y las 6 guías | Artículos tipo Apple Newsroom: titular, autoría y revisión, foto grande, «Respuesta rápida», índice, secciones, producto relacionado, preguntas y fuentes |
+| `perfiles/…` | Cabecera partida con la imagen, cifras y filas de información |
+| `evidencia/` | Bloque editorial con el cerebro, filtros por tema y buscador (`?q=` desde el index ya filtra) |
+| `preguntas-frecuentes/` | Buscador grande, temas en tarjetas y acordeones |
+| `envios/`, `devoluciones/`, `contacto/`, legales | Cifras grandes, tarjetas de pasos, tablas por país, formulario y textos en columna estrecha |
+
+SEO en las subpáginas: `title` y `description` propios, `canonical`, Open Graph, migas en el pie con sus datos estructurados (`BreadcrumbList`), `Product` en las fichas, `Article` en las guías, `FAQPage` con las respuestas definitivas, `noindex` en carrito, checkout, confirmación y consulta, y `sitemap.xml`.
+
+Las imágenes nuevas de las subpáginas (`prospecto.webp` y `devolucion.webp`) también se generaron con IA en Figma. Las fotos de tus productos solo puedes darlas tú: en `PROMPTS-IMAGENES.md` están los prompts para hacerlas a partir de una foto real del envase.
+
+## Publicar cambios
+
+```bash
+git add -A
+git commit -m "Describe el cambio"
+git push
+```
+
+GitHub Pages vuelve a publicar en uno o dos minutos.
