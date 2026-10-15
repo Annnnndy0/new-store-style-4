@@ -285,7 +285,7 @@ ${hero({
     <section class="sec" aria-labelledby="pr-more">
       <div class="wrap">
         ${sechead({ title: 'Otros perfiles.', id: 'pr-more', center: true })}
-        <ul class="profiles profiles--five">${others.map((x) => `
+        <ul class="profiles">${others.map((x) => `
           <li class="reveal"><a class="profile" href="${r(`perfiles/${x.slug}/`)}">
             <span class="profile__pic"><img src="${r(x.img)}" width="${x.w}" height="${x.h}" alt="" loading="lazy" decoding="async"></span>
             <span class="profile__name">${x.area || d(`Perfil ${x.n}`)}</span><span class="more">Ver perfil</span></a></li>`).join('')}

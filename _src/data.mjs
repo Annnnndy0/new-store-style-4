@@ -137,7 +137,7 @@ export const GUIDES = [
 ];
 
 /* ---------- Perfiles ("A quién va dirigido") ----------
-   Los 6 del carrusel del index, en este orden. text: la frase de su tarjeta (texto de muestra a
+   Los 7 del carrusel del index, en este orden. text: la frase de su tarjeta (texto de muestra a
    revisar). img: cuadrada para la cabecera de su página; card: la foto horizontal de la tarjeta. */
 
 export const PROFILES = [
@@ -149,35 +149,42 @@ export const PROFILES = [
     alt: 'Una artista pinta un lienzo al aire libre, entre espigas doradas',
   },
   {
-    slug: 'estudiantes-e-ingenieros', short: 'Estudiantes e ingenieros', n: '02', area: 'Estudiantes, académicos e ingenieros', icon: 'ph-graduation-cap',
-    title: 'Para jornadas largas de estudio, investigación o taller en las que cada detalle cuenta',
-    text: 'Para jornadas largas de estudio, investigación o taller en las que cada detalle cuenta.',
-    img: 'assets/perfil-ingenieros-cuadrada.webp', w: 900, h: 900, card: 'assets/perfil-ingenieros',
-    alt: 'Tres estudiantes de ingeniería montan un circuito en un taller',
+    slug: 'estudiantes-y-academicos', short: 'Estudiantes y académicos', n: '02', area: 'Estudiantes y académicos', icon: 'ph-graduation-cap',
+    title: 'Para jornadas largas de estudio, clases e investigación que piden la mente despierta',
+    text: 'Para jornadas largas de estudio, clases e investigación que piden la mente despierta.',
+    img: 'assets/perfil-estudiantes-cuadrada.webp', w: 900, h: 900, card: 'assets/perfil-estudiantes',
+    alt: 'Estudiantes toman apuntes y trabajan con portátiles junto a una pizarra de investigación',
   },
   {
-    slug: 'atletas', short: 'Atletas', n: '03', area: 'Atletas y deportistas', icon: 'ph-person-simple-run',
+    slug: 'ingenieros', short: 'Ingenieros', n: '03', area: 'Ingenieros', icon: 'ph-wrench',
+    title: 'Para horas de taller, diseño y resolución de problemas en las que cada detalle cuenta',
+    text: 'Para horas de taller, diseño y resolución de problemas en las que cada detalle cuenta.',
+    img: 'assets/perfil-ingenieros-cuadrada.webp', w: 900, h: 900, card: 'assets/perfil-ingenieros',
+    alt: 'Tres ingenieros montan un circuito en un taller',
+  },
+  {
+    slug: 'atletas', short: 'Atletas', n: '04', area: 'Atletas y deportistas', icon: 'ph-person-simple-run',
     title: 'Para quien entrena con disciplina y cuida la preparación, el esfuerzo y el descanso',
     text: 'Para quien entrena con disciplina y cuida cada fase: la preparación, el esfuerzo y el descanso.',
     img: 'assets/perfil-atletas-cuadrada.webp', w: 900, h: 900, card: 'assets/perfil-atletas',
     alt: 'Una atleta sale de los tacos en una pista de atletismo al atardecer',
   },
   {
-    slug: 'gamers-y-disenadores', short: 'Gamers y diseñadores', n: '04', area: 'Gamers y diseñadores', icon: 'ph-game-controller',
+    slug: 'gamers-y-disenadores', short: 'Gamers y diseñadores', n: '05', area: 'Gamers y diseñadores', icon: 'ph-game-controller',
     title: 'Para sesiones largas frente a la pantalla que piden foco y reflejos',
     text: 'Para sesiones largas frente a la pantalla que piden foco y reflejos.',
     img: 'assets/perfil-gamers-cuadrada.webp', w: 900, h: 900, card: 'assets/perfil-gamers',
     alt: 'Un jugador con cascos y una diseñadora con tableta gráfica trabajan en su estudio',
   },
   {
-    slug: 'doctores', short: 'Doctores', n: '05', area: 'Doctores', icon: 'ph-stethoscope',
+    slug: 'doctores', short: 'Doctores', n: '06', area: 'Doctores', icon: 'ph-stethoscope',
     title: 'Para profesionales sanitarios con turnos exigentes y decisiones que piden precisión',
     text: 'Para profesionales sanitarios con turnos exigentes y decisiones que piden precisión.',
     img: 'assets/perfil-doctores-cuadrada.webp', w: 900, h: 900, card: 'assets/perfil-doctores',
     alt: 'Un cirujano con mascarilla y gorro sostiene un instrumental',
   },
   {
-    slug: 'concentracion', short: 'Concentración', n: '06', area: 'Cualquier persona que requiera concentración', icon: 'ph-target',
+    slug: 'concentracion', short: 'Concentración', n: '07', area: 'Cualquier persona que requiera concentración', icon: 'ph-target',
     title: 'Para cualquiera que quiera dar lo mejor de sí cuando más lo necesita',
     text: 'Para cualquiera que quiera dar lo mejor de sí cuando más lo necesita.',
     img: 'assets/perfil-concentracion-cuadrada.webp', w: 900, h: 900, card: 'assets/perfil-concentracion',

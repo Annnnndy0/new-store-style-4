@@ -44,7 +44,7 @@ Pensado para que cualquiera encuentre rápido lo que busca: primero qué es y po
 | 05 | Compra con tranquilidad (carrusel de 5 tarjetas) | gris | «Get the highlights» |
 | 06 | Pide hoy. Paga al recibirlo (4 pasos) + Enviamos a tu país | blanco | Bloque editorial + cifras grandes |
 | 07 | Guías (texto SEO + 6 tarjetas con respuesta rápida) | gris | Tarjetas con botón + |
-| 08 | A quién va dirigido: carrusel de 6 perfiles (Artistas con vídeo, Estudiantes/académicos/ingenieros, Atletas, Gamers y diseñadores, Doctores, Cualquier persona que requiera concentración) | blanco | «Set to stunning.»: tarjetas de foto grandes, frase debajo y flechas abajo a la derecha |
+| 08 | A quién va dirigido: carrusel de 7 perfiles (Artistas con vídeo, Estudiantes y académicos, Ingenieros, Atletas, Gamers y diseñadores, Doctores, Cualquier persona que requiera concentración) | blanco | «Set to stunning.»: tarjetas de foto grandes, frase debajo y flechas abajo a la derecha |
 | 09 | Estudios + Cómo revisamos la información | gris | Bloque editorial con imagen que entra por el lado |
 | 10 | Preguntas frecuentes | blanco | Acordeón con + |
 | 11 | Empieza cuando quieras (3 accesos) | gris | «Ways to buy» |
